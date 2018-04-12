@@ -22,7 +22,18 @@ std::vector<int> Test::generateRandomVector() {
 }
 
 void Test::printVector(const std::vector<int> &v) {
-	for (int i = 0; i < v.size(); i++)
-		std::cout << v[i] << " ";
-	std::cout << std::endl;
+    for (int i = 0; i < v.size(); i++)
+        std::cout << v[i] << " ";
+    std::cout << std::endl;
+}
+
+std::vector<std::vector<int>> Test::getTestSet() {
+    // Initialize with special cases
+    std::vector<std::vector<int>> testSet{{}, {0}, {0, 0, 0, 0, 0, 0, 0}, {0, 1, 2, 3, 4, 5, 6}, {6, 5, 4, 3, 2, 1, 0}};
+    
+    for (int i = 0; i < 50; ++i) {
+        testSet.push_back(generateRandomVector());
+    }
+    
+    return testSet;
 }

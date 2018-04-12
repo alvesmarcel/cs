@@ -15,43 +15,24 @@ void insertionSort(std::vector<int> &v) {
 }
 
 int main(int argc, const char * argv[]) {
-    
-    for (int i = 0; i < 10; i++) {
-        std::vector<int> v = Test::generateRandomVector();
-        std::vector<int> original = v;
-        std::vector<int> expected = v;
+    const std::vector<std::vector<int>> testSet = Test::getTestSet();
+    for (int i = 0; i < testSet.size(); ++i) {
+        std::vector<int> expected = testSet[i];
         std::sort(expected.begin(), expected.end());
-        insertionSort(v);
-        if (!Test::isSorted(v)) {
+        std::vector<int> result = testSet[i];
+        insertionSort(result);
+        if (!Test::isSorted(result)) {
             std::cout << "Insertion Sort failed:\n";
             std::cout << "Original: ";
-            Test::printVector(original);
+            Test::printVector(testSet[i]);
             std::cout << "Expected: ";
             Test::printVector(expected);
             std::cout << "Result: ";
-            Test::printVector(v);
+            Test::printVector(result);
             std::cout << std::endl;
+            exit(1);
         }
     }
-    
-    std::vector<std::vector<int>> specialCases = {{}, {0}, {0, 0, 0, 0, 0, 0, 0}, {0, 1, 2, 3, 4, 5, 6}, {6, 5, 4, 3, 2, 1, 0}};
-    for (int i = 0; i < specialCases.size(); i++) {
-        insertionSort(specialCases[i]);
-        std::vector<int> original = specialCases[i];
-        std::vector<int> expected = specialCases[i];
-        std::sort(expected.begin(), expected.end());
-        if (!Test::isSorted(specialCases[i])) {
-            std::cout << "Insertion Sort failed:\n";
-            std::cout << "Original: ";
-            Test::printVector(original);
-            std::cout << "Expected: ";
-            Test::printVector(expected);
-            std::cout << "Result: ";
-            Test::printVector(specialCases[i]);
-            std::cout << std::endl;
-        }
-    }
-    
     std::cout << "Insertion Sort successful\n";
     
     return 0;

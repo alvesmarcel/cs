@@ -4,9 +4,10 @@
 #include <vector>
 
 class Test {
+    static std::vector<int> generateRandomVector();
     
 public:
-    static std::vector<int> generateRandomVector();
+    static std::vector<std::vector<int>> getTestSet();
     static bool isSorted(const std::vector<int> &v);
     static void printVector(const std::vector<int> &v);
 };
